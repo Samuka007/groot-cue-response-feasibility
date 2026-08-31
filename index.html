@@ -120,6 +120,14 @@
     .footer { padding: 50px 0 70px; color: var(--subtle); font-size: 13px; border-top: 1px solid var(--line); }
     .source-list { columns: 2; column-gap: 35px; }
     .source-list li { break-inside: avoid; }
+    .zh { display: block; margin-top: 6px; color: var(--muted); font-size: .9em; line-height: 1.45; }
+    h1 .zh { color: var(--cyan); font-size: .46em; letter-spacing: -.02em; }
+    h2 .zh { color: var(--cyan); font-size: .46em; letter-spacing: -.02em; }
+    h3 .zh { color: var(--cyan); font-size: .78em; letter-spacing: 0; }
+    .eyebrow .zh { color: var(--muted); font-size: .9em; letter-spacing: .04em; text-transform: none; }
+    .metric span .zh { font-size: .92em; }
+    .video-card figcaption .zh { font-size: .95em; }
+    .lang-note { color: var(--subtle); font-size: 12px; margin: 8px 0 0; }
     @media (max-width: 800px) {
       .wrap { width: min(calc(100% - 28px), var(--max)); }
       .topbar-inner { align-items: flex-start; flex-direction: column; gap: 10px; }
@@ -141,10 +149,10 @@
     <div class="wrap topbar-inner">
       <a class="brand" href="#top">GR00T / cue-to-action</a>
       <nav aria-label="Page navigation">
-        <a href="#proof">Proof</a>
-        <a href="#ladder">Experiment ladder</a>
-        <a href="#latency">Latency question</a>
-        <a href="#implications">Implications</a>
+        <a href="#proof">Proof / 证据</a>
+        <a href="#ladder">Ladder / 阶梯</a>
+        <a href="#latency">Latency / 延迟</a>
+        <a href="#implications">Implications / 意义</a>
       </nav>
     </div>
   </header>
@@ -152,12 +160,12 @@
   <main id="top">
     <section class="hero">
       <div class="wrap">
-        <div class="eyebrow">Initial feasibility study · August 2026</div>
-        <h1>Can a frozen VLA react when the world changes?</h1>
-        <p class="hero-lede"><strong>We made the question deliberately small.</strong> A stationary cube changes from blue to red. The EEF does not move. The policy only has to close the gripper. This isolates a visual condition change from the much larger problem of manipulation.</p>
+        <div class="eyebrow">Initial feasibility study · August 2026<span class="zh">初步可行性研究 · 2026 年 8 月</span></div>
+        <h1>Can a frozen VLA react when the world changes?<span class="zh">冻结骨干的 VLA 能否在世界发生变化时作出反应？</span></h1>
+        <p class="hero-lede"><strong>We made the question deliberately small.</strong> A stationary cube changes from blue to red. The EEF does not move. The policy only has to close the gripper. This isolates a visual condition change from the much larger problem of manipulation.<span class="zh"><strong>我们刻意把问题缩到最小。</strong> 一个静止方块从蓝色变成红色；末端执行器不移动；策略只需闭合夹爪。这样可以把“视觉条件变化”与更复杂的操作能力分离。</span></p>
         <div class="hero-actions">
-          <a class="button primary" href="#proof">See the evidence</a>
-          <a class="button" href="#latency">Interrogate the pitch</a>
+          <a class="button primary" href="#proof">See the evidence / 查看证据</a>
+          <a class="button" href="#latency">Interrogate the pitch / 追问 pitch</a>
         </div>
       </div>
     </section>
@@ -165,33 +173,33 @@
     <section class="section" id="proof">
       <div class="wrap">
         <div class="section-head">
-          <div class="eyebrow">The narrow claim</div>
-          <h2>Red enters the input. Close appears immediately.</h2>
-          <p>This is not a claim about temporal cognition, grasping, lifting, or general reflexes. It is a controlled test of whether an action head can map a visible state to a simple actuator response while remaining quiet in the matched blue control.</p>
+          <div class="eyebrow">The narrow claim<span class="zh">核心的窄命题</span></div>
+          <h2>Red enters the input. Close appears immediately.<span class="zh">输入出现红色，闭合动作立即出现。</span></h2>
+          <p>This is not a claim about temporal cognition, grasping, lifting, or general reflexes. It is a controlled test of whether an action head can map a visible state to a simple actuator response while remaining quiet in the matched blue control.<span class="zh">这不是关于时间认知、抓取、抬升或一般反射能力的结论，而是一个受控测试：动作头能否把可见状态映射为简单的执行器响应，同时在匹配的蓝色对照中保持安静。</span></p>
         </div>
         <div class="answer">
           <article class="panel answer-main">
-            <h3>Minimal protocol</h3>
+            <h3>Minimal protocol<span class="zh">最小实验协议</span></h3>
             <div class="cue-strip">
-              <div class="cue"><span class="dot blue"></span>Blue<br><small>gripper open</small></div>
-              <div class="cue"><span class="dot red"></span>Red<br><small>cue visible</small></div>
-              <div class="cue"><span class="dot white"></span>Close<br><small>one action</small></div>
+              <div class="cue"><span class="dot blue"></span>Blue<br><small>gripper open / 夹爪打开</small></div>
+              <div class="cue"><span class="dot red"></span>Red<br><small>cue visible / 红色可见</small></div>
+              <div class="cue"><span class="dot white"></span>Close<br><small>one action / 单次动作</small></div>
             </div>
-            <p class="quote">“Can the policy switch one action dimension on the first red-visible control step?”</p>
+            <p class="quote">“Can the policy switch one action dimension on the first red-visible control step?”<span class="zh">“策略能否在第一个红色可见的控制步切换一个动作维度？”</span></p>
           </article>
           <article class="panel answer-side">
-            <div class="metric-hero"><strong>12/12</strong><span>factual responses</span></div>
-            <p class="metric-note">Freshly fine-tuned checkpoint. Every factual episode saw red in the actual policy input and produced a valid post-red close with no pre-cue close.</p>
+            <div class="metric-hero"><strong>12/12</strong><span>factual responses / factual 响应</span></div>
+            <p class="metric-note">Freshly fine-tuned checkpoint. Every factual episode saw red in the actual policy input and produced a valid post-red close with no pre-cue close.<span class="zh">新训练的 checkpoint。每个 factual episode 都在真实 policy input 中看到了红色，并在没有提前闭合的情况下产生有效的红后闭合。</span></p>
             <hr style="border:0;border-top:1px solid var(--line);margin:22px 0">
-            <div class="metric-hero"><strong style="font-size:48px;color:var(--green)">0/12</strong><span>no-cue violations</span></div>
-            <p class="metric-note">The matched blue-only controls stayed open. The result is conditional response evidence, not an always-close shortcut.</p>
+            <div class="metric-hero"><strong style="font-size:48px;color:var(--green)">0/12</strong><span>no-cue violations / 无 cue 违规</span></div>
+            <p class="metric-note">The matched blue-only controls stayed open. The result is conditional response evidence, not an always-close shortcut.<span class="zh">匹配的纯蓝色对照始终保持打开。这是条件性响应证据，而不是 always-close shortcut。</span></p>
           </article>
         </div>
         <div class="metrics" style="margin-top:18px">
-          <article class="panel metric good"><strong>0 steps</strong><span>Median simulated cue→close latency</span></article>
-          <article class="panel metric blue"><strong>142 ms</strong><span>Median wall-clock policy response on this setup</span></article>
-          <article class="panel metric good"><strong>0 m</strong><span>EEF motion after non-gripper actions were zeroed</span></article>
-          <article class="panel metric warn"><strong>1 pair</strong><span>One fixed scene and blue→red color pair</span></article>
+          <article class="panel metric good"><strong>0 steps</strong><span>Median simulated cue→close latency<span class="zh">模拟 cue→close 延迟中位数</span></span></article>
+          <article class="panel metric blue"><strong>142 ms</strong><span>Median wall-clock policy response<span class="zh">实际 policy 响应耗时中位数</span></span></article>
+          <article class="panel metric good"><strong>0 m</strong><span>EEF motion after non-gripper actions were zeroed<span class="zh">非夹爪动作置零后的 EEF 位移</span></span></article>
+          <article class="panel metric warn"><strong>1 pair</strong><span>One fixed scene and blue→red color pair<span class="zh">一个固定场景与蓝→红颜色对</span></span></article>
         </div>
       </div>
     </section>
@@ -199,34 +207,35 @@
     <section class="section" style="padding-top:0">
       <div class="wrap">
         <div class="section-head">
-          <div class="eyebrow">Watch the behavior</div>
-          <h2>The policy is not asked to manipulate anything.</h2>
-          <p>Videos preserve a one-second post-response tail, so the visible change is not hidden on the final frame. The left/right views are the agent camera and wrist camera.</p>
+          <div class="eyebrow">Watch the behavior<span class="zh">观看行为</span></div>
+          <h2>The policy is not asked to manipulate anything.<span class="zh">这里没有要求策略完成任何操作任务。</span></h2>
+          <p>Videos preserve a one-second post-response tail, so the visible change is not hidden on the final frame. The left/right views are the agent camera and wrist camera.<span class="zh">视频在响应后保留一秒，因此视觉变化不会被截在最后一帧。左右画面分别是 agent camera 和 wrist camera。</span></p>
+          <p class="lang-note">All clips are browser-compatible H.264/MP4 files with fast-start metadata.<br>所有视频均已转为浏览器兼容的 H.264/MP4，并写入 fast-start 元数据。</p>
         </div>
         <div class="video-grid">
           <figure class="panel video-card">
-            <video controls preload="metadata" poster="assets/posters/ep0003_response.png">
-              <source src="assets/videos/ep0003_factual.mp4" type="video/mp4">
+            <video controls preload="metadata" playsinline poster="assets/posters/ep0003_response.png">
+              <source src="assets/videos/ep0003_factual.mp4" type='video/mp4; codecs="avc1.4D401E"'>
             </video>
-            <figcaption><strong>Fine-tuned · factual</strong>Blue remains open until red enters the input. The close response occurs at 2.65 s; the video continues for another second.</figcaption>
+            <figcaption><strong>Fine-tuned · factual<span class="zh">微调模型 · factual</span></strong>Blue remains open until red enters the input. The close response occurs at 2.65 s; the video continues for another second.<span class="zh">红色进入输入前保持打开；2.65 秒时发生闭合响应，视频随后继续播放一秒。</span></figcaption>
           </figure>
           <figure class="panel video-card">
-            <video controls preload="metadata" poster="assets/posters/no_cue.png">
-              <source src="assets/videos/ep0003_no_cue.mp4" type="video/mp4">
+            <video controls preload="metadata" playsinline poster="assets/posters/no_cue.png">
+              <source src="assets/videos/ep0003_no_cue.mp4" type='video/mp4; codecs="avc1.4D401E"'>
             </video>
-            <figcaption><strong>Fine-tuned · matched no-cue</strong>Blue remains visible for the full nominal episode and the gripper stays open.</figcaption>
+            <figcaption><strong>Fine-tuned · matched no-cue<span class="zh">微调模型 · 匹配的无 cue 对照</span></strong>Blue remains visible for the full nominal episode and the gripper stays open.<span class="zh">整个 nominal episode 都保持蓝色，夹爪始终打开。</span></figcaption>
           </figure>
           <figure class="panel video-card">
-            <video controls preload="metadata" poster="assets/posters/ep0003_response.png">
-              <source src="assets/videos/zero_shot_ep0000_factual.mp4" type="video/mp4">
+            <video controls preload="metadata" playsinline poster="assets/posters/ep0003_response.png">
+              <source src="assets/videos/zero_shot_ep0000_factual.mp4" type='video/mp4; codecs="avc1.4D401E"'>
             </video>
-            <figcaption><strong>Zero-shot LIBERO · factual</strong>Red is visible, but the pretrained policy keeps outputting an open-gripper command. No further fine-tuning.</figcaption>
+            <figcaption><strong>Zero-shot LIBERO · factual<span class="zh">LIBERO 零样本 · factual</span></strong>Red is visible, but the pretrained policy keeps outputting an open-gripper command. No further fine-tuning.<span class="zh">红色可见，但预训练策略仍持续输出打开夹爪的动作；没有进一步微调。</span></figcaption>
           </figure>
           <figure class="panel video-card">
-            <video controls preload="metadata" poster="assets/posters/no_cue.png">
-              <source src="assets/videos/zero_shot_ep0000_no_cue.mp4" type="video/mp4">
+            <video controls preload="metadata" playsinline poster="assets/posters/no_cue.png">
+              <source src="assets/videos/zero_shot_ep0000_no_cue.mp4" type='video/mp4; codecs="avc1.4D401E"'>
             </video>
-            <figcaption><strong>Zero-shot LIBERO · matched no-cue</strong>Blue control remains open, as expected. The zero-shot baseline is conservative rather than indiscriminately closing.</figcaption>
+            <figcaption><strong>Zero-shot LIBERO · matched no-cue<span class="zh">LIBERO 零样本 · 匹配的无 cue 对照</span></strong>Blue control remains open, as expected. The zero-shot baseline is conservative rather than indiscriminately closing.<span class="zh">蓝色对照保持打开。零样本基线是保守地不响应，而不是无条件闭合。</span></figcaption>
           </figure>
         </div>
       </div>
@@ -235,26 +244,26 @@
     <section class="section" id="ladder">
       <div class="wrap">
         <div class="section-head">
-          <div class="eyebrow">What was measured beyond the proof</div>
-          <h2>A ladder of demands, not a history of runs.</h2>
-          <p>The experiments below are useful only when their extra capability requirements are made explicit. The first arm asks whether a response can be learned. The later arms ask different questions.</p>
+          <div class="eyebrow">What was measured beyond the proof<span class="zh">最小证明之外测了什么</span></div>
+          <h2>A ladder of demands, not a history of runs.<span class="zh">这是能力需求阶梯，不是实验流水账。</span></h2>
+          <p>The experiments below are useful only when their extra capability requirements are made explicit. The first arm asks whether a response can be learned. The later arms ask different questions.<span class="zh">下面的实验只有在明确额外引入了哪些能力要求时才有意义。第一层问“响应能否学会”，后续各层问的是不同问题。</span></p>
         </div>
         <div class="timeline">
-          <article class="panel step"><div class="step-number">LEVEL 0 · COMPLETE</div><h3>State → action</h3><p>Static cube, fixed EEF, blue/no-cue versus red/close. Tests visual state discrimination plus action-head mapping. No temporal reasoning or physics completion.</p></article>
-          <article class="panel step"><div class="step-number">LEVEL 1 · NEXT</div><h3>Action → contact</h3><p>Put the cube inside the closing envelope, still keep EEF fixed. Contact is a secondary physical consequence; do not require lift or retention.</p></article>
-          <article class="panel step"><div class="step-number">LEVEL 2 · CONTROL</div><h3>Action → short press</h3><p>Use a button or fixed post-response motion. This adds spatial contact but avoids the hidden “did the gripper attach?” state.</p></article>
-          <article class="panel step"><div class="step-number">LEVEL 3 · STRESS TEST</div><h3>Moving target</h3><p>Restore follow, approach, timing, closed-loop tracking, and recovery. A failure here cannot be attributed to reaction alone.</p></article>
-          <article class="panel step"><div class="step-number">LEVEL 4 · SEPARATE TASK</div><h3>Lift / hold</h3><p>Requires hidden attachment-state handling and long-horizon motor control. Useful manipulation research, but not a clean reaction metric.</p></article>
+          <article class="panel step"><div class="step-number">LEVEL 0 · COMPLETE</div><h3>State → action<span class="zh">状态 → 动作</span></h3><p>Static cube, fixed EEF, blue/no-cue versus red/close. Tests visual state discrimination plus action-head mapping. No temporal reasoning or physics completion.<span class="zh">静止方块、固定 EEF、蓝色对照与红色闭合。测试视觉状态区分和动作头映射，不测试时间推理或物理任务完成。</span></p></article>
+          <article class="panel step"><div class="step-number">LEVEL 1 · NEXT</div><h3>Action → contact<span class="zh">动作 → 接触</span></h3><p>Put the cube inside the closing envelope, still keep EEF fixed. Contact is a secondary physical consequence; do not require lift or retention.<span class="zh">把方块放进夹爪闭合范围，但仍固定 EEF。接触只作为次级物理结果，不要求抬升或保持。</span></p></article>
+          <article class="panel step"><div class="step-number">LEVEL 2 · CONTROL</div><h3>Action → short press<span class="zh">动作 → 短按压</span></h3><p>Use a button or fixed post-response motion. This adds spatial contact but avoids the hidden “did the gripper attach?” state.<span class="zh">使用按钮或固定的响应后短动作。它增加空间接触，但避开“夹爪是否真的附着”的隐藏状态。</span></p></article>
+          <article class="panel step"><div class="step-number">LEVEL 3 · STRESS TEST</div><h3>Moving target<span class="zh">移动目标</span></h3><p>Restore follow, approach, timing, closed-loop tracking, and recovery. A failure here cannot be attributed to reaction alone.<span class="zh">重新加入跟随、接近、时序、闭环跟踪和 recovery。此处失败不能单独归因于反应能力。</span></p></article>
+          <article class="panel step"><div class="step-number">LEVEL 4 · SEPARATE TASK</div><h3>Lift / hold<span class="zh">抬升 / 保持</span></h3><p>Requires hidden attachment-state handling and long-horizon motor control. Useful manipulation research, but not a clean reaction metric.<span class="zh">需要处理隐藏的附着状态和长时程运动控制。它适合研究操作能力，但不是干净的反应指标。</span></p></article>
         </div>
 
         <div class="panel compare" style="margin-top:24px">
           <table>
-            <thead><tr><th>Arm</th><th>Resource / design</th><th>Observed result</th><th>What it actually demands</th></tr></thead>
+            <thead><tr><th>Arm / 实验</th><th>Resource / design<br>资源 / 设计</th><th>Observed result<br>观测结果</th><th>What it actually demands<br>实际要求的能力</th></tr></thead>
             <tbody>
-              <tr><td><strong>Zero-shot LIBERO</strong></td><td>No adaptation. 12 factual + 12 matched controls.</td><td><span class="pill red">0/12 red→close</span><br><span class="pill green">0/12 no-cue violations</span></td><td>Tests what the pretrained LIBERO policy already does under a new instruction/scene. It sees red but has no learned mapping to this actuator response.</td></tr>
-              <tr><td><strong>Minimal cue-response</strong></td><td>512 matched training pairs; 1,024 episodes / 65,786 frames; fresh action-head arm; 2,500 steps on 6 GPUs; 12+12 evaluation.</td><td><span class="pill green">12/12 red→close</span><br><span class="pill green">0/12 no-cue violations</span></td><td>Fixed-scene red-state discrimination and a one-dimensional action switch. Not temporal change detection or manipulation.</td></tr>
-              <tr><td><strong>Static grasp / lift diagnostic</strong></td><td>12 factual + 12 no-cue episodes on a fine-tuned moving-task checkpoint; contact/lift gates retained only as diagnostic fields.</td><td><span class="pill amber">4/12 factual at c15000</span><br><span class="pill red">0/12 no-cue correct</span></td><td>Adds spatial tracking and physical attachment ambiguity. The factual lift does not isolate reaction speed.</td></tr>
-              <tr><td><strong>Moving follow-and-grasp stress test</strong></td><td>10-hour-scale paired corpus: 6,000 episodes / 720,000 frames; four motion families; 6-GPU training up to 20k steps; 48 factual + 48 no-cue matrix.</td><td><span class="pill amber">16/48 factual at aligned c20k</span><br><span class="pill red">1/48 no-cue correct</span></td><td>Visual servoing, velocity/position control, pre-contact accuracy, recovery, contact, and hidden attachment state. It is a composite manipulation test.</td></tr>
+              <tr><td><strong>Zero-shot LIBERO</strong><span class="zh">LIBERO 零样本</span></td><td>No adaptation. 12 factual + 12 matched controls.<span class="zh">不做适配；12 个 factual + 12 个匹配对照。</span></td><td><span class="pill red">0/12 red→close</span><br><span class="pill green">0/12 no-cue violations</span></td><td>Tests what the pretrained LIBERO policy already does under a new instruction/scene. It sees red but has no learned mapping to this actuator response.<span class="zh">测试预训练 LIBERO 策略面对新 instruction/场景时原本会做什么。它看到了红色，但没有产生该执行器响应的已学习映射。</span></td></tr>
+              <tr><td><strong>Minimal cue-response</strong><span class="zh">最小 cue-response</span></td><td>512 matched training pairs; 1,024 episodes / 65,786 frames; fresh action-head arm; 2,500 steps on 6 GPUs; 12+12 evaluation.<span class="zh">512 对匹配训练样本；1024 episodes / 65,786 frames；fresh action-head；6 GPU 训练 2500 steps；12+12 评估。</span></td><td><span class="pill green">12/12 red→close</span><br><span class="pill green">0/12 no-cue violations</span></td><td>Fixed-scene red-state discrimination and a one-dimensional action switch. Not temporal change detection or manipulation.<span class="zh">固定场景中的红色状态区分和单维动作切换；不测试时间变化检测或操作能力。</span></td></tr>
+              <tr><td><strong>Static grasp / lift diagnostic</strong><span class="zh">静态抓取 / 抬升诊断</span></td><td>12 factual + 12 no-cue episodes on a fine-tuned moving-task checkpoint; contact/lift gates retained only as diagnostic fields.<span class="zh">在移动任务微调 checkpoint 上运行 12 factual + 12 no-cue；接触/抬升 gate 仅作为诊断字段。</span></td><td><span class="pill amber">4/12 factual at c15000</span><br><span class="pill red">0/12 no-cue correct</span></td><td>Adds spatial tracking and physical attachment ambiguity. The factual lift does not isolate reaction speed.<span class="zh">加入空间跟踪和物理附着歧义；factual 抬升不能单独隔离反应速度。</span></td></tr>
+              <tr><td><strong>Moving follow-and-grasp stress test</strong><span class="zh">移动跟随抓取压力测试</span></td><td>10-hour-scale paired corpus: 6,000 episodes / 720,000 frames; four motion families; 6-GPU training up to 20k steps; 48 factual + 48 no-cue matrix.<span class="zh">10 小时规模匹配语料：6000 episodes / 720,000 frames；四种运动；6 GPU 最多训练 20k steps；48 factual + 48 no-cue。</span></td><td><span class="pill amber">16/48 factual at aligned c20k</span><br><span class="pill red">1/48 no-cue correct</span></td><td>Visual servoing, velocity/position control, pre-contact accuracy, recovery, contact, and hidden attachment state. It is a composite manipulation test.<span class="zh">要求视觉伺服、速度/位置控制、接触前精度、recovery、接触和隐藏附着状态；这是复合操作测试。</span></td></tr>
             </tbody>
           </table>
         </div>
@@ -264,32 +273,32 @@
     <section class="section" id="latency">
       <div class="wrap">
         <div class="section-head">
-          <div class="eyebrow">The pitch question</div>
-          <h2>Does 142 ms mean GR00T is already fast enough?</h2>
-          <p><strong>No—not by itself.</strong> The minimal probe establishes a policy-query baseline in a static, synchronous simulator. It does not establish a low end-to-end sensor-to-actuator latency.</p>
+          <div class="eyebrow">The pitch question<span class="zh">对 pitch 的关键追问</span></div>
+          <h2>Does 142 ms mean GR00T is already fast enough?<span class="zh">142 ms 是否意味着 GR00T 已经足够快？</span></h2>
+          <p><strong>No—not by itself.</strong> The minimal probe establishes a policy-query baseline in a static, synchronous simulator. It does not establish a low end-to-end sensor-to-actuator latency.<span class="zh"><strong>不能这样推断。</strong> 最小实验只在静态、同步模拟器中建立了 policy-query baseline，并没有证明完整 sensor-to-actuator latency 很低。</span></p>
         </div>
         <div class="two-col">
           <article class="panel copy-card">
-            <h3>What the number includes</h3>
-            <p>The measured wall time is the observed policy request interval in the server-client setup. It is a useful baseline for this implementation, but not a complete physical control-loop measurement.</p>
+            <h3>What the number includes<span class="zh">这个数字包含什么</span></h3>
+            <p>The measured wall time is the observed policy request interval in the server-client setup. It is a useful baseline for this implementation, but not a complete physical control-loop measurement.<span class="zh">测得的 wall time 是 server-client 架构中的 policy request interval。它是当前实现的有用基线，但不是完整的物理控制环测量。</span></p>
             <div class="formula">T<sub>e2e</sub> = T<sub>capture</sub> + T<sub>queue</sub> + T<sub>preprocess</sub> + T<sub>infer</sub> + T<sub>transport</sub> + T<sub>actuate</sub></div>
-            <p style="margin-top:16px">The current static probe largely removes the cost of target motion and contact failure. Its simulated “0 steps” means the action is selected on the first red-visible control tick, not that the physical response is instantaneous.</p>
+            <p style="margin-top:16px">The current static probe largely removes the cost of target motion and contact failure. Its simulated “0 steps” means the action is selected on the first red-visible control tick, not that the physical response is instantaneous.<span class="zh">当前静态实验基本移除了目标运动和接触失败的成本。“0 simulated steps”表示动作在第一个红色可见的 control tick 被选出，不表示物理响应瞬时完成。</span></p>
           </article>
           <article class="panel copy-card">
-            <h3>Why optimization may still matter</h3>
-            <p>At 20 Hz, one control tick is 50 ms. A 142 ms policy request is roughly 2.8 control periods. If the world continues evolving while inference runs, the relevant question is how much state changes before action availability.</p>
+            <h3>Why optimization may still matter<span class="zh">为什么优化仍可能有意义</span></h3>
+            <p>At 20 Hz, one control tick is 50 ms. A 142 ms policy request is roughly 2.8 control periods. If the world continues evolving while inference runs, the relevant question is how much state changes before action availability.<span class="zh">20 Hz 下一个 control tick 是 50 ms；142 ms 的 policy request 约等于 2.8 个控制周期。如果推理期间世界继续变化，关键问题是动作可用前状态改变了多少。</span></p>
             <div class="bar-list">
               <div class="bar-row"><span>20 Hz tick</span><div class="bar"><i style="width:35%"></i></div><em>50 ms</em></div>
               <div class="bar-row"><span>Policy p50</span><div class="bar"><i style="width:100%"></i></div><em>142 ms</em></div>
               <div class="bar-row"><span>at 0.10 m/s</span><div class="bar"><i style="width:70%"></i></div><em>14 mm</em></div>
               <div class="bar-row"><span>at 0.20 m/s</span><div class="bar"><i style="width:100%"></i></div><em>28 mm</em></div>
             </div>
-            <p style="margin-top:17px">Those displacement values are a scale calculation for a moving target during 142 ms, not a measurement from the static probe.</p>
+            <p style="margin-top:17px">Those displacement values are a scale calculation for a moving target during 142 ms, not a measurement from the static probe.<span class="zh">这些位移值只是“目标在 142 ms 内运动”的尺度估算，不是静态实验的测量结果。</span></p>
           </article>
         </div>
         <div class="callout" style="margin-top:18px">
-          <h3>The optimization thesis needs a dynamic consequence.</h3>
-          <p>Optimizing a static blue→red gripper-close probe is unlikely to demonstrate meaningful task benefit: the world does not move, and the action window is effectively unlimited. An optimization module earns its place only if it reduces a measured delay component and prevents misses, stale actions, or unsafe discontinuities on a task whose outcome changes at the relevant time scale.</p>
+          <h3>The optimization thesis needs a dynamic consequence.<span class="zh">优化论点必须落到动态后果。</span></h3>
+          <p>Optimizing a static blue→red gripper-close probe is unlikely to demonstrate meaningful task benefit: the world does not move, and the action window is effectively unlimited. An optimization module earns its place only if it reduces a measured delay component and prevents misses, stale actions, or unsafe discontinuities on a task whose outcome changes at the relevant time scale.<span class="zh">优化静态蓝→红闭合实验很难展示有意义的任务收益：世界不动，动作窗口实际上无限。只有当优化模块降低了某个已测得的延迟分量，并在结果随时序变化的任务中减少 miss、stale action 或不安全的不连续，它才值得被引入。</span></p>
         </div>
       </div>
     </section>
@@ -297,34 +306,34 @@
     <section class="section" id="implications">
       <div class="wrap">
         <div class="section-head">
-          <div class="eyebrow">A more useful research lens</div>
-          <h2>From “is it fast?” to “when does latency change the answer?”</h2>
-          <p>The minimal study answers capability feasibility. It also tells us what the next scientific claim would have to add: a dynamic, timestamped situation in which different latencies produce different outcomes.</p>
+          <div class="eyebrow">A more useful research lens<span class="zh">更有用的研究视角</span></div>
+          <h2>From “is it fast?” to “when does latency change the answer?”<span class="zh">从“它快不快？”转向“延迟何时会改变答案？”</span></h2>
+          <p>The minimal study answers capability feasibility. It also tells us what the next scientific claim would have to add: a dynamic, timestamped situation in which different latencies produce different outcomes.<span class="zh">最小实验回答了能力可行性，也说明下一个科学论点必须增加什么：一个有时间戳的动态情境，使不同延迟真正产生不同结果。</span></p>
         </div>
         <div class="two-col">
           <article class="panel copy-card">
-            <h3>What a meaningful optimization study would hold fixed</h3>
+            <h3>What a meaningful optimization study would hold fixed<span class="zh">有意义的优化实验应固定什么</span></h3>
             <ul>
-              <li>Policy checkpoint, prompt, observations, action interface, seeds, and evaluation tasks.</li>
-              <li>Realized delay traces replayed across all methods.</li>
-              <li>Same asynchronous execution semantics: physics continues while a new action is being inferred.</li>
-              <li>Separate measured components: capture, queue, preprocessing, inference, transport, actuation.</li>
+              <li>Policy checkpoint, prompt, observations, action interface, seeds, and evaluation tasks.<span class="zh">固定 policy checkpoint、prompt、observations、action interface、随机种子和评估任务。</span></li>
+              <li>Realized delay traces replayed across all methods.<span class="zh">让所有方法重放相同的真实 delay trace。</span></li>
+              <li>Same asynchronous execution semantics: physics continues while a new action is being inferred.<span class="zh">保持相同的异步执行语义：推理新动作时物理仍继续运行。</span></li>
+              <li>Separate measured components: capture, queue, preprocessing, inference, transport, actuation.<span class="zh">分别测量 capture、queue、preprocessing、inference、transport 和 actuation。</span></li>
             </ul>
           </article>
           <article class="panel copy-card">
-            <h3>What it should measure</h3>
+            <h3>What it should measure<span class="zh">它应测量什么</span></h3>
             <ul>
-              <li>Success or event-miss rate versus injected/measured delay.</li>
-              <li>Object displacement and robot-state displacement during inference.</li>
-              <li>Action staleness, inter-chunk discontinuity, jerk, and collision/contact failures.</li>
-              <li>Latency-insensitive negative controls alongside short-window dynamic tasks.</li>
+              <li>Success or event-miss rate versus injected/measured delay.<span class="zh">success 或 event-miss rate 随注入/实测延迟的变化。</span></li>
+              <li>Object displacement and robot-state displacement during inference.<span class="zh">推理期间的物体位移和机器人状态位移。</span></li>
+              <li>Action staleness, inter-chunk discontinuity, jerk, and collision/contact failures.<span class="zh">action staleness、chunk 间不连续、jerk 以及碰撞/接触失败。</span></li>
+              <li>Latency-insensitive negative controls alongside short-window dynamic tasks.<span class="zh">在短窗口动态任务旁加入对延迟不敏感的 negative control。</span></li>
             </ul>
           </article>
         </div>
         <div class="panel copy-card" style="margin-top:18px">
-          <h3>A candidate next experiment</h3>
-          <p>Keep the cue-response logic, but make the response window finite: a visible red event enables one short press or contact opportunity while the target continues moving. Compare a synchronous baseline, naive asynchronous execution, and the proposed optimized module under the same delay trace. Start with a 50–200 ms event window and report the full curve rather than one aggregate success number.</p>
-          <p style="margin-bottom:0;color:var(--cyan);font-weight:700">The key test: does the module improve outcomes specifically when the latency scale is comparable to the task’s available response window?</p>
+          <h3>A candidate next experiment<span class="zh">一个候选的下一步实验</span></h3>
+          <p>Keep the cue-response logic, but make the response window finite: a visible red event enables one short press or contact opportunity while the target continues moving. Compare a synchronous baseline, naive asynchronous execution, and the proposed optimized module under the same delay trace. Start with a 50–200 ms event window and report the full curve rather than one aggregate success number.<span class="zh">保留 cue-response 逻辑，但把响应窗口设为有限：红色事件出现后，在目标继续移动时只提供一次短按压或接触机会。在相同 delay trace 下比较同步 baseline、朴素异步执行和拟议优化模块。先从 50–200 ms 的事件窗口开始，报告完整曲线，而不是单个 aggregate success number。</span></p>
+          <p style="margin-bottom:0;color:var(--cyan);font-weight:700">The key test: does the module improve outcomes specifically when the latency scale is comparable to the task’s available response window?<span class="zh">关键测试：只有当延迟尺度接近任务可用响应窗口时，模块是否才会改善结果？</span></p>
         </div>
       </div>
     </section>
@@ -332,8 +341,8 @@
     <section class="section">
       <div class="wrap">
         <div class="callout">
-          <h3>Current position</h3>
-          <p>The pitch should carry a substantial question mark, not a premature victory lap. The minimal probe is valuable because it cleanly establishes that the frozen-backbone policy can be taught a fast conditional action. It does not show that GR00T’s end-to-end latency is already low, and it does not yet justify an optimization module. The justification must come from a dynamic task where measured latency consumes a meaningful fraction of the action window or causes measurable state staleness.</p>
+          <h3>Current position<span class="zh">当前判断</span></h3>
+          <p>The pitch should carry a substantial question mark, not a premature victory lap. The minimal probe is valuable because it cleanly establishes that the frozen-backbone policy can be taught a fast conditional action. It does not show that GR00T’s end-to-end latency is already low, and it does not yet justify an optimization module. The justification must come from a dynamic task where measured latency consumes a meaningful fraction of the action window or causes measurable state staleness.<span class="zh">这个 pitch 应保留实质性的问号，而不是提前庆功。最小实验的价值在于清楚证明：冻结骨干策略可以学会快速的条件动作。但它没有证明 GR00T 的端到端延迟已经足够低，也还不能证明需要优化模块。论证必须来自动态任务：实测延迟消耗了响应窗口的显著比例，或造成了可测量的状态陈旧。</span></p>
         </div>
       </div>
     </section>
@@ -341,14 +350,15 @@
 
   <footer class="footer">
     <div class="wrap">
-      <p><strong style="color:var(--muted)">Evidence scope.</strong> One static scene, one cube, one instruction, one blue→red pair, fixed EEF, and one action response. The page deliberately separates feasibility evidence from composite manipulation evidence.</p>
+      <p class="lang-note">English and 中文 are shown together so the evidence and its limitations are readable without a language switch.<br>English 与中文并列显示，无需切换语言即可阅读证据及其限制。</p>
+      <p><strong style="color:var(--muted)">Evidence scope / 证据范围.</strong> One static scene, one cube, one instruction, one blue→red pair, fixed EEF, and one action response. The page deliberately separates feasibility evidence from composite manipulation evidence.<span class="zh">一个静态场景、一个方块、一条指令、一组蓝→红颜色对、固定 EEF 和一个动作响应。本页面有意把可行性证据与复合操作证据分开。</span></p>
       <ul class="source-list">
-        <li>Minimal protocol: <code>clean_scene/scripts/cue_response_reference.py</code></li>
-        <li>Evaluator: <code>bench/scripts/cue_response_eval.py</code></li>
-        <li>Fine-tuned metrics: <code>evidence/cue-response-v1-extended/metrics.json</code></li>
-        <li>Zero-shot metrics: <code>evidence/cue-response-zero-shot-libero10/metrics.json</code></li>
-        <li>Detailed report: <code>CUE-RESPONSE-FEASIBILITY-REPORT.md</code></li>
-        <li>Experiment specification: <code>research/data_diversity/stages/2026-08-29-systematic-review/cue_response_plan.md</code></li>
+        <li>Minimal protocol / 最小协议: <code>clean_scene/scripts/cue_response_reference.py</code></li>
+        <li>Evaluator / 评估器: <code>bench/scripts/cue_response_eval.py</code></li>
+        <li>Fine-tuned metrics / 微调指标: <code>evidence/cue-response-v1-extended/metrics.json</code></li>
+        <li>Zero-shot metrics / 零样本指标: <code>evidence/cue-response-zero-shot-libero10/metrics.json</code></li>
+        <li>Detailed report / 详细报告: <code>CUE-RESPONSE-FEASIBILITY-REPORT.md</code></li>
+        <li>Experiment specification / 实验规格: <code>research/data_diversity/stages/2026-08-29-systematic-review/cue_response_plan.md</code></li>
       </ul>
     </div>
   </footer>
