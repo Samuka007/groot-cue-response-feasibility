@@ -434,7 +434,7 @@
     }
 
     buttons.forEach((button) => button.addEventListener('click', () => setLocale(button.dataset.locale)));
-    let initialLocale = /^zh(?:-|$)/i.test(navigator.language) ? 'zh' : 'en';
+    let initialLocale = 'en';
     try { initialLocale = localStorage.getItem(storageKey) || initialLocale; } catch (_) { /* private browsing */ }
     setLocale(initialLocale, false);
   </script>
