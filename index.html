@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0b1020">
-  <meta name="description" content="A first feasibility study of cue-to-action response in frozen-backbone GR00T-N1.7.">
-  <title>Can a Frozen VLA React? — GR00T Cue-to-Action Feasibility</title>
+  <meta name="description" content="A stage report on visible-condition-to-action response in GR00T-LIBERO.">
+  <title>Visible Condition → Action — GR00T Cue-to-Action Stage Result</title>
   <style>
     :root {
       --bg: #090d19;
@@ -145,10 +145,11 @@
     <div class="wrap topbar-inner">
       <a class="brand" href="#top" data-i18n="brand">GR00T / cue-to-action</a>
       <nav aria-label="Page navigation">
+        <a href="#baseline" data-i18n="nav.baseline">Baseline</a>
         <a href="#proof" data-i18n="nav.proof">Proof</a>
         <a href="#ladder" data-i18n="nav.ladder">Experiment ladder</a>
-        <a href="#latency" data-i18n="nav.latency">Latency question</a>
-        <a href="#implications" data-i18n="nav.implications">Implications</a>
+        <a href="#latency" data-i18n="nav.latency">Speed reference</a>
+        <a href="#implications" data-i18n="nav.implications">Evidence boundary</a>
       </nav>
       <div class="lang-switch" role="group" aria-label="Language">
         <button class="lang-button" type="button" data-locale="en" aria-pressed="true">EN</button>
@@ -160,22 +161,39 @@
   <main id="top">
     <section class="hero">
       <div class="wrap">
-        <div class="eyebrow" data-i18n="hero.eyebrow">Initial feasibility study · August 2026</div>
-        <h1 data-i18n="hero.title">Can a frozen VLA react when the world changes?</h1>
-        <p class="hero-lede" data-i18n="hero.lede"><strong>We made the question deliberately small.</strong> A stationary cube changes from blue to red. The EEF does not move. The policy only has to close the gripper. This isolates a visual condition change from the much larger problem of manipulation.</p>
+        <div class="eyebrow" data-i18n="hero.eyebrow">Stage result · August 2026</div>
+        <h1 data-i18n="hero.title">GR00T can react to a visible condition—and we measured how fast</h1>
+        <p class="hero-lede" data-i18n="hero.lede"><strong>We first verified the standard GR00T-LIBERO system.</strong> Then we made the question deliberately small: a stationary cube is blue or red, the EEF stays fixed, and the policy only switches the gripper from open to close. Fresh SFT produced 12/12 red→close responses with 0/12 matched no-cue violations; the measured policy response on this setup is about 142–151 ms.</p>
         <div class="hero-actions">
           <a class="button primary" href="#proof" data-i18n="hero.proof">See the evidence</a>
-          <a class="button" href="#latency" data-i18n="hero.pitch">Interrogate the pitch</a>
+          <a class="button" href="#latency" data-i18n="hero.pitch">Read the speed reference</a>
         </div>
+      </div>
+    </section>
+
+    <section class="section" id="baseline">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow" data-i18n="baseline.eyebrow">First, the standard system</div>
+          <h2 data-i18n="baseline.title">The GR00T-LIBERO baseline ran cleanly.</h2>
+          <p data-i18n="baseline.lede">Before isolating cue response, we verified the standard rollout in its benchmark scenes. These results establish a working baseline; they are not a same-scene cue-response control.</p>
+        </div>
+        <div class="metrics">
+          <article class="panel metric good"><strong>10/10</strong><span data-i18n="baseline.kitchen">KITCHEN_SCENE3 standard rollouts</span></article>
+          <article class="panel metric good"><strong>10/10</strong><span data-i18n="baseline.living">LIVING_ROOM_SCENE2 standard rollouts</span></article>
+          <article class="panel metric blue"><strong>141.6 ms</strong><span data-i18n="baseline.eager">eager median</span></article>
+          <article class="panel metric blue"><strong>73.0 ms</strong><span data-i18n="baseline.compile">compile median</span></article>
+        </div>
+        <p class="locale-hint" data-i18n="baseline.source">Source: TASK-LOG.md:104–112 · standard environment / rollout baseline.</p>
       </div>
     </section>
 
     <section class="section" id="proof">
       <div class="wrap">
         <div class="section-head">
-          <div class="eyebrow" data-i18n="proof.eyebrow">The narrow claim</div>
-          <h2 data-i18n="proof.title">Red enters the input. Close appears immediately.</h2>
-          <p data-i18n="proof.lede">This is not a claim about temporal cognition, grasping, lifting, or general reflexes. It is a controlled test of whether an action head can map a visible state to a simple actuator response while remaining quiet in the matched blue control.</p>
+          <div class="eyebrow" data-i18n="proof.eyebrow">LEVEL 0 · The minimal task</div>
+          <h2 data-i18n="proof.title">A visible red condition switches one action.</h2>
+          <p data-i18n="proof.lede">The cube is static, the EEF is fixed, and the policy sees either blue/no-cue (stay open) or red (close). This asks one bounded question: can a visible condition map to an action without an always-close shortcut?</p>
         </div>
         <div class="answer">
           <article class="panel answer-main">
@@ -185,7 +203,7 @@
               <div class="cue"><span class="dot red"></span><span data-i18n="protocol.red">Red<br><small>cue visible</small></span></div>
               <div class="cue"><span class="dot white"></span><span data-i18n="protocol.close">Close<br><small>one action</small></span></div>
             </div>
-            <p class="quote" data-i18n="protocol.question">“Can the policy switch one action dimension on the first red-visible control step?”</p>
+            <p class="quote" data-i18n="protocol.question">“When red is visible, can the policy switch one action dimension?”</p>
           </article>
           <article class="panel answer-side">
             <div class="metric-hero"><strong>12/12</strong><span data-i18n="metric.factual">factual responses</span></div>
@@ -196,11 +214,22 @@
           </article>
         </div>
         <div class="metrics" style="margin-top:18px">
-          <article class="panel metric good"><strong>0 steps</strong><span data-i18n="metric.simulated">Median simulated cue→close latency</span></article>
-          <article class="panel metric blue"><strong>142 ms</strong><span data-i18n="metric.wall">Median wall-clock policy response on this setup</span></article>
+          <article class="panel metric good"><strong>0 steps</strong><span data-i18n="metric.simulated">Simulated cue→close: control steps</span></article>
+          <article class="panel metric blue"><strong>142–151 ms</strong><span data-i18n="metric.wall">Measured policy response across two valid batches</span></article>
           <article class="panel metric good"><strong>0 m</strong><span data-i18n="metric.eef">EEF motion after non-gripper actions were zeroed</span></article>
-          <article class="panel metric warn"><strong>1 pair</strong><span data-i18n="metric.pair">One fixed scene and blue→red color pair</span></article>
+          <article class="panel metric warn"><strong>1 pair</strong><span data-i18n="metric.pair">One fixed scene with blue/no-cue and red conditions</span></article>
         </div>
+        <div class="two-col" style="margin-top:18px">
+          <article class="panel copy-card">
+            <h3 data-i18n="comparison.zero.title">Zero-shot: red was seen, but the action did not switch.</h3>
+            <p data-i18n="comparison.zero.body"><strong>Red observed: 12/12.</strong> Red→close: 0/12. Matched no-cue violations: 0/12. The pretrained LIBERO policy saw the condition but had no learned mapping to this actuator response.</p>
+          </article>
+          <article class="panel copy-card">
+            <h3 data-i18n="comparison.sft.title">Fresh SFT: the conditional response was learned.</h3>
+            <p data-i18n="comparison.sft.body"><strong>Red→close: 12/12.</strong> Matched no-cue violations: 0/12. Fresh checkpoint: <code>ft_cue_response_v1/checkpoint-2500</code>. This is the current-stage achievement: a fixed-scene visual condition drives one action dimension.</p>
+          </article>
+        </div>
+        <p class="locale-hint" style="margin-top:18px" data-i18n="proof.control">Visual and language backbones stayed frozen so the experiment isolates action-path adaptation. This is a controlled setup, not the claim itself.</p>
       </div>
     </section>
 
@@ -209,7 +238,7 @@
         <div class="section-head">
           <div class="eyebrow" data-i18n="videos.eyebrow">Watch the behavior</div>
           <h2 data-i18n="videos.title">The policy is not asked to manipulate anything.</h2>
-          <p data-i18n="videos.lede">Videos preserve a one-second post-response tail, so the visible change is not hidden on the final frame. The left/right views are the agent camera and wrist camera.</p>
+          <p data-i18n="videos.lede">Videos preserve one second after the close response, so the response remains visible. The left/right views are the agent camera and wrist camera.</p>
           <p class="locale-hint" data-i18n="videos.codec">All clips are browser-compatible H.264/MP4 files with fast-start metadata.</p>
         </div>
         <div class="video-grid">
@@ -217,7 +246,7 @@
             <video controls preload="metadata" playsinline poster="assets/posters/ep0003_response.png">
               <source src="assets/videos/ep0003_factual.mp4" type='video/mp4; codecs="avc1.4D401E"'>
             </video>
-            <figcaption><strong data-i18n="video.ft.factual.title">Fine-tuned · factual</strong><span data-i18n="video.ft.factual.body">Blue remains open until red enters the input. The close response occurs at 2.65 s; the video continues for another second.</span></figcaption>
+            <figcaption><strong data-i18n="video.ft.factual.title">Fine-tuned · factual</strong><span data-i18n="video.ft.factual.body">The red condition is visible before the close response at 2.65 s; the video continues for another second.</span></figcaption>
           </figure>
           <figure class="panel video-card">
             <video controls preload="metadata" playsinline poster="assets/posters/no_cue.png">
@@ -244,9 +273,9 @@
     <section class="section" id="ladder">
       <div class="wrap">
         <div class="section-head">
-          <div class="eyebrow" data-i18n="ladder.eyebrow">What was measured beyond the proof</div>
-          <h2 data-i18n="ladder.title">A ladder of demands, not a history of runs.</h2>
-          <p data-i18n="ladder.lede">The experiments below are useful only when their extra capability requirements are made explicit. The first arm asks whether a response can be learned. The later arms ask different questions.</p>
+          <div class="eyebrow" data-i18n="ladder.eyebrow">Keep the questions separate</div>
+          <h2 data-i18n="ladder.title">A capability ladder, not a run history.</h2>
+          <p data-i18n="ladder.lede">Each level adds one capability. A later failure must not erase the Level 0 result—or turn an unmeasured capability into a claim.</p>
         </div>
         <div class="timeline">
           <article class="panel step"><div class="step-number" data-i18n="step.zero.status">LEVEL 0 · COMPLETE</div><h3 data-i18n="step.zero.title">State → action</h3><p data-i18n="step.zero.body">Static cube, fixed EEF, blue/no-cue versus red/close. Tests visual state discrimination plus action-head mapping. No temporal reasoning or physics completion.</p></article>
@@ -262,8 +291,6 @@
             <tbody>
               <tr><td><strong data-i18n="row.zero.name">Zero-shot LIBERO</strong></td><td data-i18n="row.zero.resource">No adaptation. 12 factual + 12 matched controls.</td><td><span class="pill red">0/12 red→close</span><br><span class="pill green">0/12 no-cue violations</span></td><td data-i18n="row.zero.demands">Tests what the pretrained LIBERO policy already does under a new instruction/scene. It sees red but has no learned mapping to this actuator response.</td></tr>
               <tr><td><strong data-i18n="row.minimal.name">Minimal cue-response</strong></td><td data-i18n="row.minimal.resource">512 matched training pairs; 1,024 episodes / 65,786 frames; fresh action-head arm; 2,500 steps on 6 GPUs; 12+12 evaluation.</td><td><span class="pill green">12/12 red→close</span><br><span class="pill green">0/12 no-cue violations</span></td><td data-i18n="row.minimal.demands">Fixed-scene red-state discrimination and a one-dimensional action switch. Not temporal change detection or manipulation.</td></tr>
-              <tr><td><strong data-i18n="row.static.name">Static grasp / lift diagnostic</strong></td><td data-i18n="row.static.resource">12 factual + 12 no-cue episodes on a fine-tuned moving-task checkpoint; contact/lift gates retained only as diagnostic fields.</td><td><span class="pill amber">4/12 factual at c15000</span><br><span class="pill red">0/12 no-cue correct</span></td><td data-i18n="row.static.demands">Adds spatial tracking and physical attachment ambiguity. The factual lift does not isolate reaction speed.</td></tr>
-              <tr><td><strong data-i18n="row.moving.name">Moving follow-and-grasp stress test</strong></td><td data-i18n="row.moving.resource">10-hour-scale paired corpus: 6,000 episodes / 720,000 frames; four motion families; 6-GPU training up to 20k steps; 48 factual + 48 no-cue matrix.</td><td><span class="pill amber">16/48 factual at aligned c20k</span><br><span class="pill red">1/48 no-cue correct</span></td><td data-i18n="row.moving.demands">Visual servoing, velocity/position control, pre-contact accuracy, recovery, contact, and hidden attachment state. It is a composite manipulation test.</td></tr>
             </tbody>
           </table>
         </div>
@@ -273,32 +300,25 @@
     <section class="section" id="latency">
       <div class="wrap">
         <div class="section-head">
-          <div class="eyebrow" data-i18n="latency.eyebrow">The pitch question</div>
-          <h2 data-i18n="latency.title">Does 142 ms mean GR00T is already fast enough?</h2>
-          <p data-i18n="latency.lede"><strong>No—not by itself.</strong> The minimal probe establishes a policy-query baseline in a static, synchronous simulator. It does not establish a low end-to-end sensor-to-actuator latency.</p>
+          <div class="eyebrow" data-i18n="latency.eyebrow">Speed reference</div>
+          <h2 data-i18n="latency.title">The measured policy response is about 142–151 ms.</h2>
+          <p data-i18n="latency.lede"><strong>These are two valid, independent evaluation artifacts.</strong> Together they give the current static cue-response setup a useful policy wall-clock reference—not a complete sensor-to-actuator latency or a theoretical model limit.</p>
         </div>
         <div class="two-col">
           <article class="panel copy-card">
-            <h3 data-i18n="latency.includes.title">What the number includes</h3>
-            <p data-i18n="latency.includes.body">The measured wall time is the observed policy request interval in the server-client setup. It is a useful baseline for this implementation, but not a complete physical control-loop measurement.</p>
-            <div class="formula">T<sub>e2e</sub> = T<sub>capture</sub> + T<sub>queue</sub> + T<sub>preprocess</sub> + T<sub>infer</sub> + T<sub>transport</sub> + T<sub>actuate</sub></div>
-            <p style="margin-top:16px" data-i18n="latency.includes.tail">The current static probe largely removes the cost of target motion and contact failure. Its simulated “0 steps” means the action is selected on the first red-visible control tick, not that the physical response is instantaneous.</p>
+            <h3 data-i18n="latency.short.title">Short batch</h3>
+            <p data-i18n="latency.short.body"><strong>p50 142.290 ms · mean 143.256 ms.</strong> Artifact: <code>evidence/cue-response-v1/metrics.json</code>.</p>
+            <p class="locale-hint" data-i18n="latency.short.note">The proof card rounds this batch to 142 ms.</p>
           </article>
           <article class="panel copy-card">
-            <h3 data-i18n="latency.optimize.title">Why optimization may still matter</h3>
-            <p data-i18n="latency.optimize.body">At 20 Hz, one control tick is 50 ms. A 142 ms policy request is roughly 2.8 control periods. If the world continues evolving while inference runs, the relevant question is how much state changes before action availability.</p>
-            <div class="bar-list">
-              <div class="bar-row"><span data-i18n="bar.tick">20 Hz tick</span><div class="bar"><i style="width:35%"></i></div><em>50 ms</em></div>
-              <div class="bar-row"><span data-i18n="bar.policy">Policy p50</span><div class="bar"><i style="width:100%"></i></div><em>142 ms</em></div>
-              <div class="bar-row"><span data-i18n="bar.slow">at 0.10 m/s</span><div class="bar"><i style="width:70%"></i></div><em>14 mm</em></div>
-              <div class="bar-row"><span data-i18n="bar.fast">at 0.20 m/s</span><div class="bar"><i style="width:100%"></i></div><em>28 mm</em></div>
-            </div>
-            <p style="margin-top:17px" data-i18n="latency.optimize.tail">Those displacement values are a scale calculation for a moving target during 142 ms, not a measurement from the static probe.</p>
+            <h3 data-i18n="latency.extended.title">Independent extended batch</h3>
+            <p data-i18n="latency.extended.body"><strong>p50 150.849 ms · mean 151.185 ms.</strong> Artifact: <code>evidence/cue-response-v1-extended/metrics.json</code>; 20 post-response frames.</p>
+            <p class="locale-hint" data-i18n="latency.extended.note">The extended clip preserves the response tail for inspection.</p>
           </article>
         </div>
         <div class="callout" style="margin-top:18px">
-          <h3 data-i18n="latency.thesis.title">The optimization thesis needs a dynamic consequence.</h3>
-          <p data-i18n="latency.thesis.body">Optimizing a static blue→red gripper-close probe is unlikely to demonstrate meaningful task benefit: the world does not move, and the action window is effectively unlimited. An optimization module earns its place only if it reduces a measured delay component and prevents misses, stale actions, or unsafe discontinuities on a task whose outcome changes at the relevant time scale.</p>
+          <h3 data-i18n="latency.thesis.title">Why the artifacts are not in conflict</h3>
+          <p data-i18n="latency.thesis.body">Short and extended are separate legal batches, so their small difference is not a contradiction and cannot be attributed to the post-response tail alone. The simulated result is <strong>0 control steps</strong>: the action was selected on the first control tick with red visible. The wall-clock values measure this server-client policy request interval, not instantaneous physical response.</p>
         </div>
       </div>
     </section>
@@ -306,34 +326,34 @@
     <section class="section" id="implications">
       <div class="wrap">
         <div class="section-head">
-          <div class="eyebrow" data-i18n="implications.eyebrow">A more useful research lens</div>
-          <h2 data-i18n="implications.title">From “is it fast?” to “when does latency change the answer?”</h2>
-          <p data-i18n="implications.lede">The minimal study answers capability feasibility. It also tells us what the next scientific claim would have to add: a dynamic, timestamped situation in which different latencies produce different outcomes.</p>
+          <div class="eyebrow" data-i18n="implications.eyebrow">The evidence boundary</div>
+          <h2 data-i18n="implications.title">This proves condition → action, not a complete reflex.</h2>
+          <p data-i18n="implications.lede">The current result is deliberately narrow: in one fixed scene, an observed red condition drives one gripper action. Everything beyond that boundary remains unmeasured, not failed.</p>
         </div>
         <div class="two-col">
           <article class="panel copy-card">
-            <h3 data-i18n="fixed.title">What a meaningful optimization study would hold fixed</h3>
+            <h3 data-i18n="scope.proved.title">What is proved here</h3>
             <ul>
-              <li data-i18n="fixed.one">Policy checkpoint, prompt, observations, action interface, seeds, and evaluation tasks.</li>
-              <li data-i18n="fixed.two">Realized delay traces replayed across all methods.</li>
-              <li data-i18n="fixed.three">Same asynchronous execution semantics: physics continues while a new action is being inferred.</li>
-              <li data-i18n="fixed.four">Separate measured components: capture, queue, preprocessing, inference, transport, actuation.</li>
+              <li data-i18n="scope.proved.one">A visible visual condition can drive one action dimension.</li>
+              <li data-i18n="scope.proved.two">The fixed-scene red→close mapping is learned after SFT.</li>
+              <li data-i18n="scope.proved.three">Matched blue/no-cue episodes remain open.</li>
+              <li data-i18n="scope.proved.four">The current setup supplies a 142–151 ms policy wall-clock reference.</li>
             </ul>
           </article>
           <article class="panel copy-card">
-            <h3 data-i18n="measure.title">What it should measure</h3>
+            <h3 data-i18n="scope.unmeasured.title">What is not measured here</h3>
             <ul>
-              <li data-i18n="measure.one">Success or event-miss rate versus injected/measured delay.</li>
-              <li data-i18n="measure.two">Object displacement and robot-state displacement during inference.</li>
-              <li data-i18n="measure.three">Action staleness, inter-chunk discontinuity, jerk, and collision/contact failures.</li>
-              <li data-i18n="measure.four">Latency-insensitive negative controls alongside short-window dynamic tasks.</li>
+              <li data-i18n="scope.unmeasured.one">Temporal blue→red change detection or reaction to a changing world.</li>
+              <li data-i18n="scope.unmeasured.two">Moving-target following or cross-scene generalization.</li>
+              <li data-i18n="scope.unmeasured.three">Contact, grasping, lifting, holding, or recovery.</li>
+              <li data-i18n="scope.unmeasured.four">Full sensor→actuator latency or latency-induced failure curves.</li>
             </ul>
           </article>
         </div>
         <div class="panel copy-card" style="margin-top:18px">
-          <h3 data-i18n="next.title">A candidate next experiment</h3>
-          <p data-i18n="next.body">Keep the cue-response logic, but make the response window finite: a visible red event enables one short press or contact opportunity while the target continues moving. Compare a synchronous baseline, naive asynchronous execution, and the proposed optimized module under the same delay trace. Start with a 50–200 ms event window and report the full curve rather than one aggregate success number.</p>
-          <p style="margin-bottom:0;color:var(--cyan);font-weight:700" data-i18n="next.key">The key test: does the module improve outcomes specifically when the latency scale is comparable to the task’s available response window?</p>
+          <h3 data-i18n="next.title">Next stage: grasp-ready static cube</h3>
+          <p data-i18n="next.body">Keep the cue-response logic, place the static cube inside the gripper’s closing envelope, and keep the EEF fixed. Treat contact as a secondary metric; do not add movement or lifting yet.</p>
+          <p style="margin-bottom:0;color:var(--cyan);font-weight:700" data-i18n="next.key">The key test: does the learned red→close response produce contact while the matched no-cue control stays open?</p>
         </div>
       </div>
     </section>
@@ -341,8 +361,8 @@
     <section class="section">
       <div class="wrap">
         <div class="callout">
-          <h3 data-i18n="position.title">Current position</h3>
-          <p data-i18n="position.body">The pitch should carry a substantial question mark, not a premature victory lap. The minimal probe is valuable because it cleanly establishes that the frozen-backbone policy can be taught a fast conditional action. It does not show that GR00T’s end-to-end latency is already low, and it does not yet justify an optimization module. The justification must come from a dynamic task where measured latency consumes a meaningful fraction of the action window or causes measurable state staleness.</p>
+          <h3 data-i18n="position.title">Current stage in one sentence</h3>
+          <p data-i18n="position.body">The standard system ran first; fresh SFT then taught GR00T to close on red and stay open on matched no-cue blue in a fixed scene. The measured 142–151 ms policy response is an engineering reference for this minimal task, not evidence of temporal change understanding, manipulation competence, or generalization.</p>
         </div>
       </div>
     </section>
@@ -351,12 +371,14 @@
   <footer class="footer">
     <div class="wrap">
       <p class="locale-hint" data-i18n="footer.hint">Choose EN or 中文. The selected locale is remembered on this browser.</p>
-      <p><strong style="color:var(--muted)" data-i18n="footer.scope.label">Evidence scope.</strong> <span data-i18n="footer.scope.body">One static scene, one cube, one instruction, one blue→red pair, fixed EEF, and one action response. The page deliberately separates feasibility evidence from composite manipulation evidence.</span></p>
+      <p><strong style="color:var(--muted)" data-i18n="footer.scope.label">Evidence scope.</strong> <span data-i18n="footer.scope.body">One static scene, one cube, one instruction, one blue/no-cue and red condition pair, fixed EEF, and one action response. The page deliberately separates feasibility evidence from composite manipulation evidence.</span></p>
       <ul class="source-list">
         <li><span data-i18n="source.minimal">Minimal protocol</span>: <code>clean_scene/scripts/cue_response_reference.py</code></li>
         <li><span data-i18n="source.evaluator">Evaluator</span>: <code>bench/scripts/cue_response_eval.py</code></li>
-        <li><span data-i18n="source.finetuned">Fine-tuned metrics</span>: <code>evidence/cue-response-v1-extended/metrics.json</code></li>
+        <li><span data-i18n="source.finetuned">Fine-tuned metrics (extended)</span>: <code>evidence/cue-response-v1-extended/metrics.json</code></li>
+        <li><span data-i18n="source.short">Fine-tuned metrics (short)</span>: <code>evidence/cue-response-v1/metrics.json</code></li>
         <li><span data-i18n="source.zero">Zero-shot metrics</span>: <code>evidence/cue-response-zero-shot-libero10/metrics.json</code></li>
+        <li><span data-i18n="source.baseline">Standard baseline record</span>: <code>TASK-LOG.md:104–112</code></li>
         <li><span data-i18n="source.report">Detailed report</span>: <code>CUE-RESPONSE-FEASIBILITY-REPORT.md</code></li>
         <li><span data-i18n="source.spec">Experiment specification</span>: <code>research/data_diversity/stages/2026-08-29-systematic-review/cue_response_plan.md</code></li>
       </ul>
@@ -366,23 +388,30 @@
   <script>
     const zh = {
       brand: 'GR00T / cue-to-action',
-      'nav.proof': '证据', 'nav.ladder': '实验阶梯', 'nav.latency': '延迟问题', 'nav.implications': '研究意义',
-      'hero.eyebrow': '初步可行性研究 · 2026 年 8 月',
-      'hero.title': '冻结骨干的 VLA 能否在世界发生变化时作出反应？',
-      'hero.lede': '<strong>我们刻意把问题缩到最小。</strong> 一个静止方块从蓝色变成红色；末端执行器不移动；策略只需闭合夹爪。这样可以把“视觉条件变化”与更复杂的操作能力分离。',
-      'hero.proof': '查看证据', 'hero.pitch': '追问 pitch',
-      'proof.eyebrow': '核心的窄命题', 'proof.title': '输入出现红色，闭合动作立即出现。',
-      'proof.lede': '这不是关于时间认知、抓取、抬升或一般反射能力的结论，而是一个受控测试：动作头能否把可见状态映射为简单的执行器响应，同时在匹配的蓝色对照中保持安静。',
+      'nav.baseline': '基线', 'nav.proof': '证据', 'nav.ladder': '实验阶梯', 'nav.latency': '速度参考', 'nav.implications': '证据边界',
+      'hero.eyebrow': '阶段成果 · 2026 年 8 月',
+      'hero.title': 'GR00T 能根据可见条件反应，并且我们测到了反应速度',
+      'hero.lede': '<strong>我们先确认了标准 GR00T-LIBERO 系统。</strong> 然后把问题缩到最小：静止方块呈蓝色或红色，EEF 保持固定，策略只需把夹爪从打开切换为闭合。新鲜 SFT 在 red→close 上达到 12/12，匹配的 no-cue 误闭合为 0/12；当前 setup 下测得的 policy response 约为 142–151 ms。',
+      'hero.proof': '查看证据', 'hero.pitch': '查看速度参考',
+      'baseline.eyebrow': '首先，确认标准系统', 'baseline.title': 'GR00T-LIBERO baseline 顺利运行。',
+      'baseline.lede': '在隔离 cue response 之前，我们先在标准 benchmark 场景中验证了 rollout。这些结果证明系统可运行；它们不是 cue-response 同场景对照。',
+      'baseline.kitchen': 'KITCHEN_SCENE3 标准 rollout', 'baseline.living': 'LIVING_ROOM_SCENE2 标准 rollout',
+      'baseline.eager': 'eager 中位数', 'baseline.compile': 'compile 中位数', 'baseline.source': '来源：TASK-LOG.md:104–112 · 标准环境 / rollout baseline。',
+      'proof.eyebrow': 'LEVEL 0 · 最小任务', 'proof.title': '一个可见的红色条件切换一个动作。',
+      'proof.lede': '方块保持静止，EEF 保持固定，策略看到蓝色/no-cue（保持打开）或红色（闭合）。这个受控问题只问：可见条件能否映射到动作，同时排除 always-close shortcut？',
+      'proof.control': 'Visual 与 language backbones 保持冻结，是为了隔离 action-path adaptation；冻结本身是实验控制条件，不是本阶段的主张。',
       'protocol.title': '最小实验协议',
       'protocol.blue': '蓝色<br><small>夹爪打开</small>', 'protocol.red': '红色<br><small>cue 可见</small>', 'protocol.close': '闭合<br><small>单次动作</small>',
-      'protocol.question': '“策略能否在第一个红色可见的控制步切换一个动作维度？”',
+      'protocol.question': '“红色可见时，策略能否切换一个动作维度？”',
       'metric.factual': 'factual 响应', 'metric.factual.note': '新训练的 checkpoint。每个 factual episode 都在真实 policy input 中看到了红色，并在没有提前闭合的情况下产生有效的红后闭合。',
       'metric.nocue': '无 cue 违规', 'metric.nocue.note': '匹配的纯蓝色对照始终保持打开。这是条件性响应证据，而不是 always-close shortcut。',
-      'metric.simulated': '模拟 cue→close 延迟中位数', 'metric.wall': '实际 policy 响应耗时中位数', 'metric.eef': '非夹爪动作置零后的 EEF 位移', 'metric.pair': '一个固定场景与蓝→红颜色对',
+      'metric.simulated': '模拟 cue→close：控制步数', 'metric.wall': '两批合法 artifact 的 policy response', 'metric.eef': '非夹爪动作置零后的 EEF 位移', 'metric.pair': '一个固定场景中的蓝色/no-cue 与红色条件',
+      'comparison.zero.title': 'Zero-shot：看到了红色，但动作没有切换。', 'comparison.zero.body': '<strong>red observed：12/12。</strong> red→close：0/12。匹配的 no-cue 误闭合：0/12。预训练 LIBERO 策略看到了条件，却没有学到对应的执行器映射。',
+      'comparison.sft.title': 'Fresh SFT：学会了条件性响应。', 'comparison.sft.body': '<strong>red→close：12/12。</strong> 匹配的 no-cue 误闭合：0/12。Fresh checkpoint：<code>ft_cue_response_v1/checkpoint-2500</code>。这是当前阶段成果：固定场景中的视觉条件驱动一个动作维度。',
       'videos.eyebrow': '观看行为', 'videos.title': '这里没有要求策略完成任何操作任务。',
-      'videos.lede': '视频在响应后保留一秒，因此视觉变化不会被截在最后一帧。左右画面分别是 agent camera 和 wrist camera。',
+      'videos.lede': '视频在闭合响应后保留一秒，因此响应过程仍然可见。左右画面分别是 agent camera 和 wrist camera。',
       'videos.codec': '所有视频均已转为浏览器兼容的 H.264/MP4，并写入 fast-start 元数据。',
-      'video.ft.factual.title': '微调模型 · factual', 'video.ft.factual.body': '红色进入输入前保持打开；2.65 秒时发生闭合响应，视频随后继续播放一秒。',
+      'video.ft.factual.title': '微调模型 · factual', 'video.ft.factual.body': '画面中可见红色条件，2.65 秒时出现闭合响应；视频随后继续播放一秒。',
       'video.ft.nocue.title': '微调模型 · 匹配的无 cue 对照', 'video.ft.nocue.body': '整个 nominal episode 都保持蓝色，夹爪始终打开。',
       'video.zs.factual.title': 'LIBERO 零样本 · factual', 'video.zs.factual.body': '红色可见，但预训练策略仍持续输出打开夹爪的动作；没有进一步微调。',
       'video.zs.nocue.title': 'LIBERO 零样本 · 匹配的无 cue 对照', 'video.zs.nocue.body': '蓝色对照保持打开。零样本 baseline 是保守地不响应，而不是无条件闭合。',
@@ -398,18 +427,17 @@
       'row.minimal.name': '最小 cue-response', 'row.minimal.resource': '512 对匹配训练样本；1024 episodes / 65,786 frames；fresh action-head；6 GPU 训练 2500 steps；12+12 评估。', 'row.minimal.demands': '固定场景中的红色状态区分和单维动作切换；不测试时间变化检测或操作能力。',
       'row.static.name': '静态抓取 / 抬升诊断', 'row.static.resource': '在移动任务微调 checkpoint 上运行 12 factual + 12 no-cue；接触/抬升 gate 仅作为诊断字段。', 'row.static.demands': '加入空间跟踪和物理附着歧义；factual 抬升不能单独隔离反应速度。',
       'row.moving.name': '移动跟随抓取压力测试', 'row.moving.resource': '10 小时规模匹配语料：6000 episodes / 720,000 frames；四种运动；6 GPU 最多训练 20k steps；48 factual + 48 no-cue。', 'row.moving.demands': '要求视觉伺服、速度/位置控制、接触前精度、recovery、接触和隐藏附着状态；这是复合操作测试。',
-      'latency.eyebrow': '对 pitch 的关键追问', 'latency.title': '142 ms 是否意味着 GR00T 已经足够快？', 'latency.lede': '<strong>不能这样推断。</strong> 最小实验只在静态、同步模拟器中建立了 policy-query baseline，并没有证明完整 sensor-to-actuator latency 很低。',
-      'latency.includes.title': '这个数字包含什么', 'latency.includes.body': '测得的 wall time 是 server-client 架构中的 policy request interval。它是当前实现的有用基线，但不是完整的物理控制环测量。', 'latency.includes.tail': '当前静态实验基本移除了目标运动和接触失败的成本。“0 simulated steps”表示动作在第一个红色可见的 control tick 被选出，不表示物理响应瞬时完成。',
-      'latency.optimize.title': '为什么优化仍可能有意义', 'latency.optimize.body': '20 Hz 下一个 control tick 是 50 ms；142 ms 的 policy request 约等于 2.8 个控制周期。如果推理期间世界继续变化，关键问题是动作可用前状态改变了多少。', 'latency.optimize.tail': '这些位移值只是“目标在 142 ms 内运动”的尺度估算，不是静态实验的测量结果。',
-      'bar.tick': '20 Hz tick', 'bar.policy': 'Policy p50', 'bar.slow': '速度 0.10 m/s', 'bar.fast': '速度 0.20 m/s',
-      'latency.thesis.title': '优化论点必须落到动态后果。', 'latency.thesis.body': '优化静态蓝→红闭合实验很难展示有意义的任务收益：世界不动，动作窗口实际上无限。只有当优化模块降低了某个已测得的延迟分量，并在结果随时序变化的任务中减少 miss、stale action 或不安全的不连续，它才值得被引入。',
-      'implications.eyebrow': '更有用的研究视角', 'implications.title': '从“它快不快？”转向“延迟何时会改变答案？”', 'implications.lede': '最小实验回答了能力可行性，也说明下一个科学论点必须增加什么：一个有时间戳的动态情境，使不同延迟真正产生不同结果。',
-      'fixed.title': '有意义的优化实验应固定什么', 'fixed.one': '固定 policy checkpoint、prompt、observations、action interface、随机种子和评估任务。', 'fixed.two': '让所有方法重放相同的真实 delay trace。', 'fixed.three': '保持相同的异步执行语义：推理新动作时物理仍继续运行。', 'fixed.four': '分别测量 capture、queue、preprocessing、inference、transport 和 actuation。',
-      'measure.title': '它应测量什么', 'measure.one': 'success 或 event-miss rate 随注入/实测延迟的变化。', 'measure.two': '推理期间的物体位移和机器人状态位移。', 'measure.three': 'action staleness、chunk 间不连续、jerk 以及碰撞/接触失败。', 'measure.four': '在短窗口动态任务旁加入对延迟不敏感的 negative control。',
-      'next.title': '一个候选的下一步实验', 'next.body': '保留 cue-response 逻辑，但把响应窗口设为有限：红色事件出现后，在目标继续移动时只提供一次短按压或接触机会。在相同 delay trace 下比较同步 baseline、朴素异步执行和拟议优化模块。先从 50–200 ms 的事件窗口开始，报告完整曲线，而不是单个 aggregate success number。', 'next.key': '关键测试：只有当延迟尺度接近任务可用响应窗口时，模块是否才会改善结果？',
-      'position.title': '当前判断', 'position.body': '这个 pitch 应保留实质性的问号，而不是提前庆功。最小实验的价值在于清楚证明：冻结骨干策略可以学会快速的条件动作。但它没有证明 GR00T 的端到端延迟已经足够低，也还不能证明需要优化模块。论证必须来自动态任务：实测延迟消耗了响应窗口的显著比例，或造成了可测量的状态陈旧。',
-      'footer.hint': '使用 EN 或中文按钮切换语言；选择会保存在当前浏览器中。', 'footer.scope.label': '证据范围。', 'footer.scope.body': '一个静态场景、一个方块、一条指令、一组蓝→红颜色对、固定 EEF 和一个动作响应。本页面有意把可行性证据与复合操作证据分开。',
-      'source.minimal': '最小协议', 'source.evaluator': '评估器', 'source.finetuned': '微调指标', 'source.zero': '零样本指标', 'source.report': '详细报告', 'source.spec': '实验规格'
+      'latency.eyebrow': '速度参考', 'latency.title': '测得的 policy response 约为 142–151 ms。', 'latency.lede': '<strong>这是两个合法、独立的 evaluation artifact。</strong> 它们共同给出当前静态 cue-response setup 的 policy wall-clock 参考，不是完整 sensor-to-actuator latency，也不是理论模型上限。',
+      'latency.short.title': '短批次', 'latency.short.body': '<strong>p50 142.290 ms · mean 143.256 ms。</strong> Artifact：<code>evidence/cue-response-v1/metrics.json</code>。', 'latency.short.note': '证据卡片将这一批次四舍五入为 142 ms。',
+      'latency.extended.title': '独立 extended 批次', 'latency.extended.body': '<strong>p50 150.849 ms · mean 151.185 ms。</strong> Artifact：<code>evidence/cue-response-v1-extended/metrics.json</code>；20 个 post-response frames。', 'latency.extended.note': 'extended clip 保留响应尾帧，便于检查。',
+      'latency.thesis.title': '两个 artifact 并不矛盾', 'latency.thesis.body': 'short 和 extended 是独立的合法批次，因此小幅差异不是矛盾，也不能只归因于尾帧。模拟结果是 <strong>0 control steps</strong>：动作在第一个可见红色条件控制步被选出。wall-clock 数字测量的是 server-client policy request interval，不是瞬时物理响应。',
+      'implications.eyebrow': '证据边界', 'implications.title': '这证明了条件 → 动作，不是完整 reflex。', 'implications.lede': '当前结果有意保持窄：在一个固定场景中，观察到红色条件会驱动一个夹爪动作。边界之外的能力尚未测量，不是本阶段失败。',
+      'scope.proved.title': '本阶段证明了什么', 'scope.proved.one': '可见视觉条件可以驱动一个动作维度。', 'scope.proved.two': 'SFT 后学会了固定场景中的 red→close mapping。', 'scope.proved.three': '匹配的蓝色/no-cue episode 保持打开。', 'scope.proved.four': '当前 setup 提供 142–151 ms 的 policy wall-clock 参考。',
+      'scope.unmeasured.title': '本阶段没有测量什么', 'scope.unmeasured.one': 'blue→red 的时间变化检测，或对变化世界的反应。', 'scope.unmeasured.two': '移动目标跟随或跨场景泛化。', 'scope.unmeasured.three': '接触、抓取、抬升、保持或 recovery。', 'scope.unmeasured.four': '完整 sensor→actuator latency 或 latency-induced failure 曲线。',
+      'next.title': '下一阶段：可抓取位置的静止方块', 'next.body': '保留 cue-response 逻辑，把静止方块放入夹爪闭合范围，并保持 EEF 固定。接触只作为次级指标；暂时不要加入移动或抬升。', 'next.key': '关键测试：学到的 red→close 响应能否产生接触，同时匹配的 no-cue 对照保持打开？',
+      'position.title': '当前阶段一句话', 'position.body': '标准系统先运行成功；随后 fresh SFT 让 GR00T 在固定场景中对 red 闭合、对匹配的 no-cue 蓝色保持打开。142–151 ms 的 policy response 是这个最小任务的工程参考，不是对时间变化理解、操作能力或泛化的证据。',
+      'footer.hint': '使用 EN 或中文按钮切换语言；选择会保存在当前浏览器中。', 'footer.scope.label': '证据范围。', 'footer.scope.body': '一个静态场景、一个方块、一条指令、一组蓝色/no-cue 与红色条件对、固定 EEF 和一个动作响应。本页面有意把可行性证据与复合操作证据分开。',
+      'source.minimal': '最小协议', 'source.evaluator': '评估器', 'source.finetuned': '微调指标（extended）', 'source.short': '微调指标（short）', 'source.zero': '零样本指标', 'source.baseline': '标准 baseline 记录', 'source.report': '详细报告', 'source.spec': '实验规格'
     };
 
     const translatables = [...document.querySelectorAll('[data-i18n]')];
