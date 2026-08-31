@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="A first feasibility study of cue-to-action response in frozen-backbone GR00T-N1.7.">
+  <title>Can a Frozen VLA React? — GR00T Cue-to-Action Feasibility</title>
+  <style>
+    :root {
+      --bg: #090d19;
+      --bg-soft: #0f1628;
+      --panel: rgba(17, 26, 47, .78);
+      --panel-strong: #141f37;
+      --line: rgba(167, 188, 230, .17);
+      --text: #edf3ff;
+      --muted: #a7b5d0;
+      --subtle: #7182a5;
+      --blue: #7db4ff;
+      --cyan: #63e6da;
+      --red: #ff7e8a;
+      --amber: #ffc878;
+      --green: #83e2a5;
+      --max: 1160px;
+      --radius: 20px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(900px 500px at 78% -8%, rgba(92, 130, 255, .19), transparent 67%),
+        radial-gradient(650px 440px at 5% 18%, rgba(71, 214, 203, .08), transparent 70%),
+        var(--bg);
+      font: 16px/1.65 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { color: #b8d3ff; text-decoration: underline; }
+    .wrap { width: min(calc(100% - 40px), var(--max)); margin: 0 auto; }
+    .topbar { padding: 22px 0; border-bottom: 1px solid var(--line); }
+    .topbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { color: var(--text); font-weight: 750; letter-spacing: -.02em; }
+    nav { display: flex; flex-wrap: wrap; gap: 18px; font-size: 13px; }
+    nav a { color: var(--muted); }
+    .hero { padding: 92px 0 72px; }
+    .eyebrow { color: var(--cyan); font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 900px; margin: 16px 0 22px; font-size: clamp(42px, 7vw, 82px); line-height: 1.02; letter-spacing: -.065em; }
+    .hero-lede { max-width: 760px; color: var(--muted); font-size: clamp(19px, 2.4vw, 25px); line-height: 1.45; }
+    .hero-lede strong { color: var(--text); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .button { display: inline-flex; align-items: center; min-height: 44px; padding: 0 17px; border: 1px solid var(--line); border-radius: 999px; background: var(--panel); color: var(--text); font-size: 14px; font-weight: 700; }
+    .button.primary { border-color: rgba(125,180,255,.55); background: linear-gradient(135deg, #3664a4, #254471); }
+    .button:hover { text-decoration: none; transform: translateY(-1px); }
+    .section { padding: 70px 0; }
+    .section-head { max-width: 760px; margin-bottom: 30px; }
+    h2 { font-size: clamp(29px, 4vw, 48px); line-height: 1.08; letter-spacing: -.045em; margin-bottom: 14px; }
+    h3 { font-size: 20px; line-height: 1.2; letter-spacing: -.02em; margin-bottom: 10px; }
+    .section-head p, .muted { color: var(--muted); }
+    .answer { display: grid; grid-template-columns: 1.05fr .95fr; gap: 18px; align-items: stretch; }
+    .panel { border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); box-shadow: 0 18px 60px rgba(0,0,0,.16); }
+    .answer-main { padding: 30px; }
+    .answer-main .quote { margin: 20px 0 0; color: var(--text); font-size: 25px; font-weight: 700; line-height: 1.3; letter-spacing: -.03em; }
+    .answer-side { padding: 28px; background: linear-gradient(150deg, rgba(52,93,151,.30), rgba(14,24,44,.78)); }
+    .metric-hero { display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px; }
+    .metric-hero strong { font-size: 62px; line-height: 1; letter-spacing: -.07em; }
+    .metric-hero span { color: var(--cyan); font-weight: 750; }
+    .metric-note { color: var(--muted); font-size: 14px; }
+    .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .metric { padding: 20px; min-height: 135px; }
+    .metric strong { display: block; font-size: 33px; letter-spacing: -.05em; line-height: 1.1; margin-bottom: 9px; }
+    .metric span { display: block; color: var(--muted); font-size: 13px; line-height: 1.4; }
+    .metric.good strong { color: var(--green); }
+    .metric.warn strong { color: var(--amber); }
+    .metric.blue strong { color: var(--blue); }
+    .timeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .step { position: relative; padding: 22px; min-height: 170px; }
+    .step-number { color: var(--subtle); font-size: 12px; font-weight: 800; letter-spacing: .12em; }
+    .step h3 { margin-top: 10px; }
+    .step p { margin-bottom: 0; color: var(--muted); font-size: 14px; }
+    .step::after { content: "→"; position: absolute; right: -18px; top: 58px; color: var(--subtle); font-size: 22px; z-index: 2; }
+    .step:last-child::after { display: none; }
+    .cue-strip { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 20px; }
+    .cue { padding: 14px; border-radius: 13px; background: var(--panel-strong); border: 1px solid var(--line); text-align: center; }
+    .dot { width: 14px; height: 14px; display: inline-block; border-radius: 50%; vertical-align: -2px; margin-right: 7px; }
+    .dot.blue { background: #4381ff; box-shadow: 0 0 18px rgba(67,129,255,.7); }
+    .dot.red { background: #ff465b; box-shadow: 0 0 18px rgba(255,70,91,.7); }
+    .dot.white { background: #e9efff; box-shadow: 0 0 18px rgba(233,239,255,.5); }
+    .video-grid { display: grid; grid-template-columns: 1.25fr .75fr; gap: 18px; }
+    .video-card { overflow: hidden; }
+    video { width: 100%; display: block; background: #03050a; aspect-ratio: 2 / 1; }
+    .video-card figcaption { padding: 18px 20px 20px; color: var(--muted); font-size: 14px; }
+    .video-card figcaption strong { color: var(--text); display: block; margin-bottom: 3px; }
+    figure { margin: 0; }
+    .compare { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; min-width: 650px; }
+    th, td { padding: 15px 17px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { color: var(--subtle); font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    td { color: var(--muted); }
+    td strong { color: var(--text); }
+    .pill { display: inline-block; padding: 3px 9px; border-radius: 999px; font-size: 12px; font-weight: 750; white-space: nowrap; }
+    .pill.green { color: #baf5cb; background: rgba(80,191,113,.14); }
+    .pill.red { color: #ffc0c5; background: rgba(255,88,104,.13); }
+    .pill.amber { color: #ffe0a8; background: rgba(255,187,85,.14); }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .copy-card { padding: 26px; }
+    .copy-card p, .copy-card li { color: var(--muted); }
+    ul { padding-left: 20px; margin-bottom: 0; }
+    li + li { margin-top: 8px; }
+    .formula { padding: 22px 25px; color: var(--cyan); background: #0a1425; border: 1px solid rgba(99,230,218,.19); border-radius: 15px; font: 600 18px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; overflow-x: auto; }
+    .bar-list { display: grid; gap: 15px; }
+    .bar-row { display: grid; grid-template-columns: 155px 1fr 70px; align-items: center; gap: 12px; color: var(--muted); font-size: 13px; }
+    .bar { height: 9px; border-radius: 9px; background: #202c45; overflow: hidden; }
+    .bar i { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--blue), var(--cyan)); }
+    .bar-row em { color: var(--text); font-style: normal; text-align: right; }
+    .callout { padding: 28px 30px; border: 1px solid rgba(125,180,255,.28); border-radius: var(--radius); background: linear-gradient(115deg, rgba(43,77,126,.32), rgba(17,27,48,.72)); }
+    .callout h3 { font-size: 25px; }
+    .callout p:last-child { margin-bottom: 0; color: var(--muted); }
+    .footer { padding: 50px 0 70px; color: var(--subtle); font-size: 13px; border-top: 1px solid var(--line); }
+    .source-list { columns: 2; column-gap: 35px; }
+    .source-list li { break-inside: avoid; }
+    @media (max-width: 800px) {
+      .wrap { width: min(calc(100% - 28px), var(--max)); }
+      .topbar-inner { align-items: flex-start; flex-direction: column; gap: 10px; }
+      nav { gap: 12px; }
+      .hero { padding: 64px 0 48px; }
+      .section { padding: 48px 0; }
+      .answer, .video-grid, .two-col { grid-template-columns: 1fr; }
+      .metrics { grid-template-columns: repeat(2, 1fr); }
+      .timeline { grid-template-columns: 1fr; }
+      .step { min-height: 0; }
+      .step::after { content: "↓"; right: auto; left: 24px; top: auto; bottom: -22px; }
+      .cue-strip { grid-template-columns: 1fr; }
+      .source-list { columns: 1; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="#top">GR00T / cue-to-action</a>
+      <nav aria-label="Page navigation">
+        <a href="#proof">Proof</a>
+        <a href="#ladder">Experiment ladder</a>
+        <a href="#latency">Latency question</a>
+        <a href="#implications">Implications</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <div class="eyebrow">Initial feasibility study · August 2026</div>
+        <h1>Can a frozen VLA react when the world changes?</h1>
+        <p class="hero-lede"><strong>We made the question deliberately small.</strong> A stationary cube changes from blue to red. The EEF does not move. The policy only has to close the gripper. This isolates a visual condition change from the much larger problem of manipulation.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#proof">See the evidence</a>
+          <a class="button" href="#latency">Interrogate the pitch</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="proof">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">The narrow claim</div>
+          <h2>Red enters the input. Close appears immediately.</h2>
+          <p>This is not a claim about temporal cognition, grasping, lifting, or general reflexes. It is a controlled test of whether an action head can map a visible state to a simple actuator response while remaining quiet in the matched blue control.</p>
+        </div>
+        <div class="answer">
+          <article class="panel answer-main">
+            <h3>Minimal protocol</h3>
+            <div class="cue-strip">
+              <div class="cue"><span class="dot blue"></span>Blue<br><small>gripper open</small></div>
+              <div class="cue"><span class="dot red"></span>Red<br><small>cue visible</small></div>
+              <div class="cue"><span class="dot white"></span>Close<br><small>one action</small></div>
+            </div>
+            <p class="quote">“Can the policy switch one action dimension on the first red-visible control step?”</p>
+          </article>
+          <article class="panel answer-side">
+            <div class="metric-hero"><strong>12/12</strong><span>factual responses</span></div>
+            <p class="metric-note">Freshly fine-tuned checkpoint. Every factual episode saw red in the actual policy input and produced a valid post-red close with no pre-cue close.</p>
+            <hr style="border:0;border-top:1px solid var(--line);margin:22px 0">
+            <div class="metric-hero"><strong style="font-size:48px;color:var(--green)">0/12</strong><span>no-cue violations</span></div>
+            <p class="metric-note">The matched blue-only controls stayed open. The result is conditional response evidence, not an always-close shortcut.</p>
+          </article>
+        </div>
+        <div class="metrics" style="margin-top:18px">
+          <article class="panel metric good"><strong>0 steps</strong><span>Median simulated cue→close latency</span></article>
+          <article class="panel metric blue"><strong>142 ms</strong><span>Median wall-clock policy response on this setup</span></article>
+          <article class="panel metric good"><strong>0 m</strong><span>EEF motion after non-gripper actions were zeroed</span></article>
+          <article class="panel metric warn"><strong>1 pair</strong><span>One fixed scene and blue→red color pair</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Watch the behavior</div>
+          <h2>The policy is not asked to manipulate anything.</h2>
+          <p>Videos preserve a one-second post-response tail, so the visible change is not hidden on the final frame. The left/right views are the agent camera and wrist camera.</p>
+        </div>
+        <div class="video-grid">
+          <figure class="panel video-card">
+            <video controls preload="metadata" poster="assets/posters/ep0003_response.png">
+              <source src="assets/videos/ep0003_factual.mp4" type="video/mp4">
+            </video>
+            <figcaption><strong>Fine-tuned · factual</strong>Blue remains open until red enters the input. The close response occurs at 2.65 s; the video continues for another second.</figcaption>
+          </figure>
+          <figure class="panel video-card">
+            <video controls preload="metadata" poster="assets/posters/no_cue.png">
+              <source src="assets/videos/ep0003_no_cue.mp4" type="video/mp4">
+            </video>
+            <figcaption><strong>Fine-tuned · matched no-cue</strong>Blue remains visible for the full nominal episode and the gripper stays open.</figcaption>
+          </figure>
+          <figure class="panel video-card">
+            <video controls preload="metadata" poster="assets/posters/ep0003_response.png">
+              <source src="assets/videos/zero_shot_ep0000_factual.mp4" type="video/mp4">
+            </video>
+            <figcaption><strong>Zero-shot LIBERO · factual</strong>Red is visible, but the pretrained policy keeps outputting an open-gripper command. No further fine-tuning.</figcaption>
+          </figure>
+          <figure class="panel video-card">
+            <video controls preload="metadata" poster="assets/posters/no_cue.png">
+              <source src="assets/videos/zero_shot_ep0000_no_cue.mp4" type="video/mp4">
+            </video>
+            <figcaption><strong>Zero-shot LIBERO · matched no-cue</strong>Blue control remains open, as expected. The zero-shot baseline is conservative rather than indiscriminately closing.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="ladder">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">What was measured beyond the proof</div>
+          <h2>A ladder of demands, not a history of runs.</h2>
+          <p>The experiments below are useful only when their extra capability requirements are made explicit. The first arm asks whether a response can be learned. The later arms ask different questions.</p>
+        </div>
+        <div class="timeline">
+          <article class="panel step"><div class="step-number">LEVEL 0 · COMPLETE</div><h3>State → action</h3><p>Static cube, fixed EEF, blue/no-cue versus red/close. Tests visual state discrimination plus action-head mapping. No temporal reasoning or physics completion.</p></article>
+          <article class="panel step"><div class="step-number">LEVEL 1 · NEXT</div><h3>Action → contact</h3><p>Put the cube inside the closing envelope, still keep EEF fixed. Contact is a secondary physical consequence; do not require lift or retention.</p></article>
+          <article class="panel step"><div class="step-number">LEVEL 2 · CONTROL</div><h3>Action → short press</h3><p>Use a button or fixed post-response motion. This adds spatial contact but avoids the hidden “did the gripper attach?” state.</p></article>
+          <article class="panel step"><div class="step-number">LEVEL 3 · STRESS TEST</div><h3>Moving target</h3><p>Restore follow, approach, timing, closed-loop tracking, and recovery. A failure here cannot be attributed to reaction alone.</p></article>
+          <article class="panel step"><div class="step-number">LEVEL 4 · SEPARATE TASK</div><h3>Lift / hold</h3><p>Requires hidden attachment-state handling and long-horizon motor control. Useful manipulation research, but not a clean reaction metric.</p></article>
+        </div>
+
+        <div class="panel compare" style="margin-top:24px">
+          <table>
+            <thead><tr><th>Arm</th><th>Resource / design</th><th>Observed result</th><th>What it actually demands</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Zero-shot LIBERO</strong></td><td>No adaptation. 12 factual + 12 matched controls.</td><td><span class="pill red">0/12 red→close</span><br><span class="pill green">0/12 no-cue violations</span></td><td>Tests what the pretrained LIBERO policy already does under a new instruction/scene. It sees red but has no learned mapping to this actuator response.</td></tr>
+              <tr><td><strong>Minimal cue-response</strong></td><td>512 matched training pairs; 1,024 episodes / 65,786 frames; fresh action-head arm; 2,500 steps on 6 GPUs; 12+12 evaluation.</td><td><span class="pill green">12/12 red→close</span><br><span class="pill green">0/12 no-cue violations</span></td><td>Fixed-scene red-state discrimination and a one-dimensional action switch. Not temporal change detection or manipulation.</td></tr>
+              <tr><td><strong>Static grasp / lift diagnostic</strong></td><td>12 factual + 12 no-cue episodes on a fine-tuned moving-task checkpoint; contact/lift gates retained only as diagnostic fields.</td><td><span class="pill amber">4/12 factual at c15000</span><br><span class="pill red">0/12 no-cue correct</span></td><td>Adds spatial tracking and physical attachment ambiguity. The factual lift does not isolate reaction speed.</td></tr>
+              <tr><td><strong>Moving follow-and-grasp stress test</strong></td><td>10-hour-scale paired corpus: 6,000 episodes / 720,000 frames; four motion families; 6-GPU training up to 20k steps; 48 factual + 48 no-cue matrix.</td><td><span class="pill amber">16/48 factual at aligned c20k</span><br><span class="pill red">1/48 no-cue correct</span></td><td>Visual servoing, velocity/position control, pre-contact accuracy, recovery, contact, and hidden attachment state. It is a composite manipulation test.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="latency">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">The pitch question</div>
+          <h2>Does 142 ms mean GR00T is already fast enough?</h2>
+          <p><strong>No—not by itself.</strong> The minimal probe establishes a policy-query baseline in a static, synchronous simulator. It does not establish a low end-to-end sensor-to-actuator latency.</p>
+        </div>
+        <div class="two-col">
+          <article class="panel copy-card">
+            <h3>What the number includes</h3>
+            <p>The measured wall time is the observed policy request interval in the server-client setup. It is a useful baseline for this implementation, but not a complete physical control-loop measurement.</p>
+            <div class="formula">T<sub>e2e</sub> = T<sub>capture</sub> + T<sub>queue</sub> + T<sub>preprocess</sub> + T<sub>infer</sub> + T<sub>transport</sub> + T<sub>actuate</sub></div>
+            <p style="margin-top:16px">The current static probe largely removes the cost of target motion and contact failure. Its simulated “0 steps” means the action is selected on the first red-visible control tick, not that the physical response is instantaneous.</p>
+          </article>
+          <article class="panel copy-card">
+            <h3>Why optimization may still matter</h3>
+            <p>At 20 Hz, one control tick is 50 ms. A 142 ms policy request is roughly 2.8 control periods. If the world continues evolving while inference runs, the relevant question is how much state changes before action availability.</p>
+            <div class="bar-list">
+              <div class="bar-row"><span>20 Hz tick</span><div class="bar"><i style="width:35%"></i></div><em>50 ms</em></div>
+              <div class="bar-row"><span>Policy p50</span><div class="bar"><i style="width:100%"></i></div><em>142 ms</em></div>
+              <div class="bar-row"><span>at 0.10 m/s</span><div class="bar"><i style="width:70%"></i></div><em>14 mm</em></div>
+              <div class="bar-row"><span>at 0.20 m/s</span><div class="bar"><i style="width:100%"></i></div><em>28 mm</em></div>
+            </div>
+            <p style="margin-top:17px">Those displacement values are a scale calculation for a moving target during 142 ms, not a measurement from the static probe.</p>
+          </article>
+        </div>
+        <div class="callout" style="margin-top:18px">
+          <h3>The optimization thesis needs a dynamic consequence.</h3>
+          <p>Optimizing a static blue→red gripper-close probe is unlikely to demonstrate meaningful task benefit: the world does not move, and the action window is effectively unlimited. An optimization module earns its place only if it reduces a measured delay component and prevents misses, stale actions, or unsafe discontinuities on a task whose outcome changes at the relevant time scale.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="implications">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">A more useful research lens</div>
+          <h2>From “is it fast?” to “when does latency change the answer?”</h2>
+          <p>The minimal study answers capability feasibility. It also tells us what the next scientific claim would have to add: a dynamic, timestamped situation in which different latencies produce different outcomes.</p>
+        </div>
+        <div class="two-col">
+          <article class="panel copy-card">
+            <h3>What a meaningful optimization study would hold fixed</h3>
+            <ul>
+              <li>Policy checkpoint, prompt, observations, action interface, seeds, and evaluation tasks.</li>
+              <li>Realized delay traces replayed across all methods.</li>
+              <li>Same asynchronous execution semantics: physics continues while a new action is being inferred.</li>
+              <li>Separate measured components: capture, queue, preprocessing, inference, transport, actuation.</li>
+            </ul>
+          </article>
+          <article class="panel copy-card">
+            <h3>What it should measure</h3>
+            <ul>
+              <li>Success or event-miss rate versus injected/measured delay.</li>
+              <li>Object displacement and robot-state displacement during inference.</li>
+              <li>Action staleness, inter-chunk discontinuity, jerk, and collision/contact failures.</li>
+              <li>Latency-insensitive negative controls alongside short-window dynamic tasks.</li>
+            </ul>
+          </article>
+        </div>
+        <div class="panel copy-card" style="margin-top:18px">
+          <h3>A candidate next experiment</h3>
+          <p>Keep the cue-response logic, but make the response window finite: a visible red event enables one short press or contact opportunity while the target continues moving. Compare a synchronous baseline, naive asynchronous execution, and the proposed optimized module under the same delay trace. Start with a 50–200 ms event window and report the full curve rather than one aggregate success number.</p>
+          <p style="margin-bottom:0;color:var(--cyan);font-weight:700">The key test: does the module improve outcomes specifically when the latency scale is comparable to the task’s available response window?</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="callout">
+          <h3>Current position</h3>
+          <p>The pitch should carry a substantial question mark, not a premature victory lap. The minimal probe is valuable because it cleanly establishes that the frozen-backbone policy can be taught a fast conditional action. It does not show that GR00T’s end-to-end latency is already low, and it does not yet justify an optimization module. The justification must come from a dynamic task where measured latency consumes a meaningful fraction of the action window or causes measurable state staleness.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p><strong style="color:var(--muted)">Evidence scope.</strong> One static scene, one cube, one instruction, one blue→red pair, fixed EEF, and one action response. The page deliberately separates feasibility evidence from composite manipulation evidence.</p>
+      <ul class="source-list">
+        <li>Minimal protocol: <code>clean_scene/scripts/cue_response_reference.py</code></li>
+        <li>Evaluator: <code>bench/scripts/cue_response_eval.py</code></li>
+        <li>Fine-tuned metrics: <code>evidence/cue-response-v1-extended/metrics.json</code></li>
+        <li>Zero-shot metrics: <code>evidence/cue-response-zero-shot-libero10/metrics.json</code></li>
+        <li>Detailed report: <code>CUE-RESPONSE-FEASIBILITY-REPORT.md</code></li>
+        <li>Experiment specification: <code>research/data_diversity/stages/2026-08-29-systematic-review/cue_response_plan.md</code></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>
